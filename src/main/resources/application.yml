@@ -1,0 +1,47 @@
+access-token:
+  private: ${ACCESS_TOKEN_PRIVATE_KEY_PATH}
+  public: ${ACCESS_TOKEN_PUBLIC_KEY_PATH}
+refresh-token:
+  private: ${REFRESH_TOKEN_PRIVATE_KEY_PATH}
+  public: ${REFRESH_TOKEN_PUBLIC_KEY_PATH}
+
+spring:
+  profiles:
+    active: dev
+  datasource:
+    url: ${SPRING_DATASOURCE_URL}
+    username: ${SPRING_DATASOURCE_USERNAME}
+    password: ${SPRING_DATASOURCE_PASSWORD}
+    driver-class-name: ${SPRING_DATASOURCE_DRIVER}
+  sql:
+    init:
+      data-locations: classpath:data.sql
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+    database: mysql
+  rabbitmq:
+    stream:
+      password: 'guest'
+      username: 'guest'
+      host: '3.106.239.150'
+      port: 5672
+springdoc:
+  use-fqn: true
+  swagger-ui:
+    operations-sorter: method
+    tags-sorter: alpha
+    doc-expansion: none
+    display-request-duration: true
+    show-extensions: true
+    show-common-extensions: true
+# GitHub
+
+# Google
+
+server:
+  port: ${BASE_PORT}
+client:
+  url: ${CLIENT_URL}
+
