@@ -27,9 +27,7 @@ public interface UserRepository extends JpaRepository<User, Integer> {
             nativeQuery = true)
     List<User> findAllFriends(@Param("userId") int userId);
 
-    @Query(value = "SELECT * FROM user WHERE username LIKE %:string%", nativeQuery = true)
-    List<User> searchUserByString(String string);
+    List<User> findAllByUsernameContaining(String keyword);
 
-    List<User> searchUserByUsername(String username);
 
 }

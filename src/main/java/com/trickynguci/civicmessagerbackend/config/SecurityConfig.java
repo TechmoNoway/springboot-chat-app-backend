@@ -59,7 +59,6 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(WHITE_LIST_URL).permitAll()
                         .requestMatchers("/api/v1").permitAll()
-                        .requestMatchers("/api/v1/friend/").permitAll()
                         .requestMatchers("/ws").permitAll()
                         .anyRequest()
                         .authenticated()
@@ -84,7 +83,7 @@ public class SecurityConfig {
 
     @Bean
     @Primary
-    JwtEncoder jwtAccessToekenEncoder() {
+    JwtEncoder jwtAccessTokenEncoder() {
         JWK jwk = new RSAKey
                 .Builder(keyUtils.getAccessTokenPublicKey())
                 .privateKey(keyUtils.getAccessTokenPrivateKey())

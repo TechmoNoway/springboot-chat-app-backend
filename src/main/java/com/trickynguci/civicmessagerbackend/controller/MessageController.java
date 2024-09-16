@@ -1,12 +1,10 @@
 package com.trickynguci.civicmessagerbackend.controller;
 
 import com.trickynguci.civicmessagerbackend.dto.request.MessageRequest;
-import com.trickynguci.civicmessagerbackend.model.Message;
 import com.trickynguci.civicmessagerbackend.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
-import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
 

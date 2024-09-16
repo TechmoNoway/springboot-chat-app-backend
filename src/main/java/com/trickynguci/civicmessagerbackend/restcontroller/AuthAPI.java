@@ -2,6 +2,7 @@ package com.trickynguci.civicmessagerbackend.restcontroller;
 
 import com.trickynguci.civicmessagerbackend.config.TokenGenerator;
 import com.trickynguci.civicmessagerbackend.dto.LoginDTO;
+import com.trickynguci.civicmessagerbackend.dto.request.LoginWithGoogleRequest;
 import com.trickynguci.civicmessagerbackend.dto.SignupDTO;
 import com.trickynguci.civicmessagerbackend.dto.TokenDTO;
 import com.trickynguci.civicmessagerbackend.service.AuthService;
@@ -26,6 +27,8 @@ import java.util.HashMap;
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/auth")
 public class AuthAPI {
+
+
 
     private final TokenGenerator tokenGenerator;
 
@@ -87,6 +90,25 @@ public class AuthAPI {
         Authentication authentication = refreshTokenAuthProvider.authenticate(new BearerTokenAuthenticationToken(tokenDTO.getRefreshToken()));
 
         return ResponseEntity.ok(tokenGenerator.createToken(authentication));
+    }
+
+    @PostMapping("/loginWithGoogle")
+    public ResponseEntity<?> loginWithGoogle(@RequestBody LoginWithGoogleRequest loginWithGoogleDTO){
+        HashMap<String, Object> result = new HashMap<>();
+        try {
+            result.put("success", true);
+            result.put("message", "LoginWithGoogle successfully");
+            result.put("status", HttpStatus.OK.value());
+            result.put("data", authService.loginWithGoogle(loginWithGoogleDTO));
+            return ResponseEntity.ok(result);
+        } catch (Exception e) {
+            result.put("success", false);
+            result.put("message", "LoginWithGoogle failed");
+            result.put("status", HttpStatus.UNAUTHORIZED.value());
+            result.put("data", null);
+            log.error("error: ", e);
+            return ResponseEntity.ok(result);
+        }
     }
 
 }

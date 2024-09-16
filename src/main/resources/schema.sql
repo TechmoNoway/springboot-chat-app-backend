@@ -1,18 +1,18 @@
 USE civicappdatabase;
 
-CREATE TABLE role
+CREATE TABLE IF NOT EXISTS role
 (
     id   INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(50) NOT NULL
 );
 
 -- Create table user
-CREATE TABLE user
+CREATE TABLE IF NOT EXISTS user
 (
     id           INT PRIMARY KEY AUTO_INCREMENT,
-    username     NVARCHAR(20),
+    username     NVARCHAR(50),
     password     VARCHAR(100),
-    email        VARCHAR(20),
+    email        VARCHAR(50),
     role_id      INT,
     avatar_url   VARCHAR(255),
     phone_number VARCHAR(10),
@@ -25,7 +25,7 @@ CREATE TABLE user
 );
 
 -- create table token
-CREATE TABLE token
+CREATE TABLE IF NOT EXISTS token
 (
     id      BIGINT PRIMARY KEY AUTO_INCREMENT,
     token   LONGTEXT NULL,
@@ -38,9 +38,9 @@ CREATE TABLE token
 );
 
 -- Create table message
-CREATE TABLE message
+CREATE TABLE IF NOT EXISTS message
 (
-    id          INT PRIMARY KEY,
+    id          INT PRIMARY KEY AUTO_INCREMENT,
     sender_id   int NOT NULL,
     receiver_id int NOT NULL,
     content     TEXT,
@@ -53,7 +53,7 @@ CREATE TABLE message
 );
 
 -- Create table friendship
-CREATE TABLE friendship
+CREATE TABLE IF NOT EXISTS friendship
 (
     id        INT PRIMARY KEY AUTO_INCREMENT,
     user_id   int                                     NOT NULL,
@@ -64,7 +64,7 @@ CREATE TABLE friendship
 );
 
 -- Create table video call
-CREATE TABLE video_call
+CREATE TABLE IF NOT EXISTS video_call
 (
     id          INT PRIMARY KEY AUTO_INCREMENT,
     caller_id   INT                                     NOT NULL,
@@ -77,12 +77,12 @@ CREATE TABLE video_call
 );
 
 -- Indexes
-CREATE INDEX idx_username ON user (username);
-
-CREATE INDEX idx_sender_receiver ON message (sender_id, receiver_id);
-
-CREATE INDEX idx_timestamp ON message (timestamp);
-
-CREATE INDEX idx_user_friend ON friendship (user_id, friend_id);
+# CREATE INDEX idx_username ON user (username);
+#
+# CREATE INDEX idx_sender_receiver ON message (sender_id, receiver_id);
+#
+# CREATE INDEX idx_timestamp ON message (timestamp);
+#
+# CREATE INDEX idx_user_friend ON friendship (user_id, friend_id);
 
 

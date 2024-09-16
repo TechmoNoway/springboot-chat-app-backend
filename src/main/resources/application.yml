@@ -16,6 +16,8 @@ spring:
   sql:
     init:
       data-locations: classpath:data.sql
+      schema-locations: classpath:schema.sql
+      mode: always
   jpa:
     properties:
       hibernate:
@@ -25,7 +27,7 @@ spring:
     stream:
       password: 'guest'
       username: 'guest'
-      host: '3.106.239.150'
+      host: 'localhost'
       port: 5672
 springdoc:
   use-fqn: true

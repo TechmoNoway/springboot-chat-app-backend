@@ -1,8 +1,6 @@
 package com.trickynguci.civicmessagerbackend.restcontroller;
 
 import com.trickynguci.civicmessagerbackend.dto.request.MessageRequest;
-import com.trickynguci.civicmessagerbackend.model.Message;
-import com.trickynguci.civicmessagerbackend.repository.MessageRepository;
 import com.trickynguci.civicmessagerbackend.service.MessageService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -18,9 +16,7 @@ import java.util.HashMap;
 @RequestMapping("/api/v1/messages")
 public class MessageAPI {
 
-
     private final MessageService messageService;
-    private final MessageRepository messageRepository;
 
     @GetMapping("/getMessageBetweenTwoUsers")
     public ResponseEntity<?> doGetMessageBetweenTwoUsers(@RequestParam("user1Id") int user1Id, @RequestParam("user2Id") int user2Id) {
@@ -80,6 +76,5 @@ public class MessageAPI {
             return ResponseEntity.ok(result);
         }
     }
-
 
 }

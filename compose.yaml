@@ -1,53 +1,50 @@
-#version: '3.8'
-#
-#services:
-#  mysql:
-#    image: mysql:8.0
-#    command: --default-authentication-plugin=caching_sha2_password
-#    restart: always
-#    environment:
-#      MYSQL_DATABASE: 'civicappdatabase'
-#      MYSQL_PASSWORD: '332003'
-#      MYSQL_ROOT_PASSWORD: '332003'
-#      MYSQL_USER: 'civicadmin'
-#    volumes:
-#      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
-#    ports:
-#      - '3306:3306'
-#  rabbitmq:
-#    container_name: 'civic-rabbitmq'
-#    build:
-#      context: .
-#      dockerfile: Dockerfile
-#      target: rabbitmq
-#    environment:
-#      - 'RABBITMQ_DEFAULT_USER=guest'
-#      - 'RABBITMQ_DEFAULT_PASS=guest'
-#      - 'RABBITMQ_STOMP_ENABLED=true'
-#    ports:
-#      - '5672:5672'
-#      - '15672:15672'
-#      - '61613:61613'
-#      - '15674:15674'
-#    restart: always
-#  redis:
-#    container_name: 'civic-redis'
-#    image: 'redis:latest'
-#    ports:
-#      - '6379:6379'
-#    restart: always
-#  spring-app:
-#    build:
-#      context: .
-#      dockerfile: Dockerfile
-#      target: application
-#    ports:
-#      - '8081:8081'
-#    environment:
-#      SPRING_RABBITMQ_HOST: 'civic-rabbitmq'
-#    depends_on:
-#      - rabbitmq
-#      - mysql
-#      - redis
-#    restart: always
-#
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+    command: --default-authentication-plugin=caching_sha2_password
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'civicappdatabase'
+      MYSQL_PASSWORD: '332003'
+      MYSQL_ROOT_PASSWORD: '332003'
+      MYSQL_USER: 'civicadmin'
+    ports:
+      - '3306:3306'
+  rabbitmq:
+    container_name: 'civic-rabbitmq'
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: rabbitmq
+    environment:
+      - 'RABBITMQ_DEFAULT_USER=guest'
+      - 'RABBITMQ_DEFAULT_PASS=guest'
+      - 'RABBITMQ_STOMP_ENABLED=true'
+    ports:
+      - '5672:5672'
+      - '15672:15672'
+      - '61613:61613'
+      - '15674:15674'
+    restart: always
+  redis:
+    container_name: 'civic-redis'
+    image: 'redis:latest'
+    ports:
+      - '6379:6379'
+    restart: always
+  spring-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: application
+    ports:
+      - '8081:8081'
+    environment:
+      SPRING_RABBITMQ_HOST: 'civic-rabbitmq'
+    depends_on:
+      - rabbitmq
+      - mysql
+      - redis
+    restart: always

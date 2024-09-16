@@ -55,6 +55,8 @@ public class User implements UserDetails {
     @LastModifiedDate
     private Timestamp updatedAt;
 
+    private int roleId;
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return Collections.emptyList();
