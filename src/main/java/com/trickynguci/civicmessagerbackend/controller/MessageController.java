@@ -16,19 +16,6 @@ public class MessageController {
 
     private final UserService userService;
 
-
-//    @MessageMapping("/private-message")
-//    public MessageRequest receivePrivateMessage(@Payload MessageRequest message) {
-//        simpMessagingTemplate.convertAndSendToUser(
-//                userService.getUserById(message.getReceiverId()).getUsername(),
-//                "/private",
-//                message);
-//        System.out.println(userService.getUserById(message.getReceiverId()).getUsername());
-//        System.out.println(message.toString());
-//
-//        return message;
-//    }
-
     @MessageMapping("/topic")
     public void receivePrivateMessage(@Payload MessageRequest message) {
         // Assuming userService.getUserById returns a user object with a username
@@ -45,4 +32,20 @@ public class MessageController {
         System.out.println(message.toString());
     }
 
-}
+    @MessageMapping("/queue")
+    public void handleSignaling(@Payload MessageRequest message) {
+        // Assuming userService.getUserById returns a user object with a username
+        String username = userService.getUserById(message.getReceiverId()).getUsername();
+
+        // Construct the destination topic for the user
+        String userDestination = "/queue/" + username;
+
+        // Send the message to the user-specific topic
+        simpMessagingTemplate.convertAndSend(userDestination, message);
+
+        // Optional: Logging for debugging purposes
+        System.out.println("Sending to " + userDestination);
+        System.out.println(message.toString());
+    }
+
+}   

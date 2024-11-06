@@ -13,6 +13,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -44,7 +45,6 @@ public class SecurityConfig {
 
 
     private static final String[] WHITE_LIST_URL = {
-            "/api/v1/**",
             "/ws/**",
             "/swagger-resources",
             "/swagger-resources/**",
@@ -58,8 +58,8 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(WHITE_LIST_URL).permitAll()
-                        .requestMatchers("/api/v1").permitAll()
-                        .requestMatchers("/ws").permitAll()
+                        .requestMatchers("/api/v1/**").permitAll()
+                        .requestMatchers("/ws/**").permitAll()
                         .anyRequest()
                         .authenticated()
                 )

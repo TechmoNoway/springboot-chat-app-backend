@@ -47,6 +47,7 @@ dependencies {
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
     implementation group: 'org.webjars', name: 'stomp-websocket', version: '2.3.4'
     implementation group: 'io.projectreactor.netty', name: 'reactor-netty-http', version: '1.1.20'
+    implementation 'com.corundumstudio.socketio:netty-socketio:2.0.12'
 }
 
 tasks.named('test') {

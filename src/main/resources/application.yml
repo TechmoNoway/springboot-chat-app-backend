@@ -42,6 +42,7 @@ springdoc:
 
 # Google
 
+
 server:
   port: ${BASE_PORT}
 client:
