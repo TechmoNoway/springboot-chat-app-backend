@@ -110,7 +110,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<UserResponse> searchUserByString(String str) {
-        return userRepository.findByUsername(str).stream()
+        return userRepository.findAllByUsernameContaining(str).stream()
                 .map(user -> UserResponse.builder()
                         .id(user.getId())
                         .username(user.getUsername())
