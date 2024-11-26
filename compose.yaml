@@ -2,6 +2,7 @@ version: '3.8'
 
 services:
   mysql:
+    container_name: 'mysql'
     image: mysql:8.0
     command: --default-authentication-plugin=caching_sha2_password
     restart: always
@@ -9,9 +10,11 @@ services:
       MYSQL_DATABASE: 'civicappdatabase'
       MYSQL_PASSWORD: '332003'
       MYSQL_ROOT_PASSWORD: '332003'
-      MYSQL_USER: 'civicadmin'
+      MYSQL_USER: 'root1'
     ports:
       - '3306:3306'
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
   rabbitmq:
     container_name: 'civic-rabbitmq'
     build:
@@ -35,10 +38,11 @@ services:
       - '6379:6379'
     restart: always
   spring-app:
+    container_name: 'spring-app'
     build:
       context: .
       dockerfile: Dockerfile
-      target: application
+      target: springapp
     ports:
       - '8081:8081'
     environment:

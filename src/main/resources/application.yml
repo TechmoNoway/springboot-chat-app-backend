@@ -13,21 +13,18 @@ spring:
     username: ${SPRING_DATASOURCE_USERNAME}
     password: ${SPRING_DATASOURCE_PASSWORD}
     driver-class-name: ${SPRING_DATASOURCE_DRIVER}
-  sql:
-    init:
-      data-locations: classpath:data.sql
-      schema-locations: classpath:schema.sql
-      mode: always
+#  sql:
+#    init:
+#      data-locations: classpath:data.sql
+#      schema-locations: classpath:schema.sql
+#      mode: always
   jpa:
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.MySQLDialect
     database: mysql
   rabbitmq:
     stream:
       password: 'guest'
       username: 'guest'
-      host: 'localhost'
+      host: 'civic-rabbitmq'
       port: 5672
 springdoc:
   use-fqn: true
