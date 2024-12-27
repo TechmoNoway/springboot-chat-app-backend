@@ -1,4 +1,4 @@
-package com.trickynguci.civicmessagerbackend.restcontroller;
+package com.trickynguci.civicmessagerbackend.rest;
 
 import com.trickynguci.civicmessagerbackend.config.TokenGenerator;
 import com.trickynguci.civicmessagerbackend.dto.LoginDTO;

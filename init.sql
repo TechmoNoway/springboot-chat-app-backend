@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS message
     receiver_id int NOT NULL,
     content     TEXT,
     status      NVARCHAR(10),
-    media_type  ENUM ('text', 'image', 'video', 'emoji') DEFAULT 'text',
+    media_type  ENUM ('text', 'image', 'video', 'file', 'call') DEFAULT 'text',
     media_url   VARCHAR(255),
     timestamp   TIMESTAMP                                DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (sender_id) REFERENCES user (id),
@@ -97,7 +97,11 @@ INSERT INTO friendship (user_id, friend_id, status) VALUES (1, 2, 'accepted');
 INSERT INTO friendship (user_id, friend_id, status) VALUES (3, 2, 'accepted');
 
 -- Insert messages
-INSERT INTO message (id, sender_id, receiver_id, content, media_type, media_url)
-VALUES (1, 1, 2, 'Watch this video!', 'video', 'https://example.com/video.mp4');
 INSERT INTO message (id, sender_id, receiver_id, content, media_type)
-VALUES (2, 2, 1, '😊', 'text');
+VALUES (1, 2, 3, 'Hello', 'text');
+INSERT INTO message (id, sender_id, receiver_id, content, media_type)
+VALUES (2, 3, 2, 'Hi', 'text');
+INSERT INTO message (id, sender_id, receiver_id, content, media_type, media_url)
+VALUES (3, 2, 3, '', 'video', 'http://res.cloudinary.com/dannocqhr/video/upload/v1732720592/g9bsoel00zqvxpkbr1lo.mp4');
+INSERT INTO message (id, sender_id, receiver_id, content, media_type, media_url)
+VALUES (4, 3, 2, '', 'image', 'http://res.cloudinary.com/dannocqhr/image/upload/v1732645319/mngcgrknjeraucazfuf2.jpg');

@@ -4,5 +4,6 @@ public enum MediaType {
     text,
     image,
     video,
-    emoji
+    file,
+    call
 }

@@ -66,6 +66,7 @@ public class MessageServiceImpl implements MessageService {
 
     @Override
     public void saveMessage(MessageRequest messageRequest) {
+
         Message message = Message.builder()
                 .sender(userRepository.findById(messageRequest.getSenderId()))
                 .receiver(userRepository.findById(messageRequest.getReceiverId()))

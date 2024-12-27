@@ -1,5 +1,6 @@
 package com.trickynguci.civicmessagerbackend;
 
+import com.trickynguci.civicmessagerbackend.model.User;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -12,11 +13,6 @@ public class CivicMessagerBackendApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(CivicMessagerBackendApplication.class, args);
-    }
-
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
     }
 }
 
