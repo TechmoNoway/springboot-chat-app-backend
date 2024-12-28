@@ -2,8 +2,11 @@ version: '3.8'
 
 services:
   mysql:
-    container_name: 'mysql'
-    image: mysql:8.0
+    container_name: 'civic-mysql'
+    build:
+        context: .
+        dockerfile: Dockerfile
+        target: mysql
     command: --default-authentication-plugin=caching_sha2_password
     restart: always
     environment:
@@ -30,13 +33,16 @@ services:
       - '15672:15672'
       - '61613:61613'
       - '15674:15674'
-    restart: always
+    restart: unless-stopped
   redis:
     container_name: 'civic-redis'
-    image: 'redis:latest'
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: redis
     ports:
       - '6379:6379'
-    restart: always
+    restart: unless-stopped
   spring-app:
     container_name: 'spring-app'
     build:
@@ -51,4 +57,5 @@ services:
       - rabbitmq
       - mysql
       - redis
-    restart: always
+    restart: unless-stopped
+

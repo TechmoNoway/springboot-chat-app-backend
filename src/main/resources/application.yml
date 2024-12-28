@@ -22,8 +22,8 @@ spring:
     database: mysql
   rabbitmq:
     stream:
-      password: 'guest'
-      username: 'guest'
+      password: ${RABBITMQ_DEFAULT_PASS}
+      username: ${RABBITMQ_DEFAULT_USER}
       host: 'civic-rabbitmq'
       port: 5672
 springdoc:
@@ -35,14 +35,6 @@ springdoc:
     display-request-duration: true
     show-extensions: true
     show-common-extensions: true
-
-# VideoSDK API
-videosdk:
-  api:
-    key: ${VIDEOSDK_API_KEY}
-    secret: ${VIDEOSDK_SECRET_KEY}
-    endpoint: ${VIDEOSDK_API_ENDPOINT}
-
 # GitHub
 
 # Google
