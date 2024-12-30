@@ -73,7 +73,6 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public TokenDTO loginWithGoogle(LoginWithGoogleRequest loginWithGoogleRequest) throws GeneralSecurityException, IOException {
-
         String apiUrl = "https://www.googleapis.com/oauth2/v3/userinfo";
 
         URL url = new URL(apiUrl);
@@ -100,8 +99,9 @@ public class AuthServiceImpl implements AuthService {
             String name = googleUserInfoResponse.getName();
 
             if (!userRepository.existsByUsername(email)) {
+                int index = email.indexOf('@');
                 User user = User.builder()
-                        .username(email)
+                        .username(email.substring(0, index))
                         .password(email)
                         .email(email)
                         .avatarUrl(avatarUrl)
@@ -113,7 +113,7 @@ public class AuthServiceImpl implements AuthService {
 
                 Authentication registingAuthentication = UsernamePasswordAuthenticationToken.authenticated(user, user.getPassword(), Collections.emptyList());
                 TokenDTO tokenDTO = tokenGenerator.createToken(registingAuthentication);
-//                saveUserToken(user, tokenDTO.getAccessToken());
+                saveUserToken(user, tokenDTO.getAccessToken());
 
                 Authentication loginAuthentication = daoAuthenticationProvider.authenticate(UsernamePasswordAuthenticationToken.unauthenticated(email, email));
                 return tokenGenerator.createToken(loginAuthentication);
