@@ -56,7 +56,6 @@ public class MessageAPI {
         }
     }
 
-
     @PostMapping("/saveMessage")
     public ResponseEntity<?> doSaveMessage(@RequestBody MessageRequest messageRequest) {
         HashMap<String, Object> result = new HashMap<>();
@@ -70,6 +69,26 @@ public class MessageAPI {
         } catch (Exception e) {
             result.put("success", false);
             result.put("message", "Call api doSaveMessage failed");
+            result.put("status", HttpStatus.INTERNAL_SERVER_ERROR.value());
+            result.put("data", null);
+            log.error("error: ", e);
+            return ResponseEntity.ok(result);
+        }
+    }
+
+    @DeleteMapping("/deleteMessage")
+    public ResponseEntity<?> doDeleteMessage(@RequestParam("messageId") int messageId) {
+        HashMap<String, Object> result = new HashMap<>();
+        try {
+            messageService.deleteMessage(messageId);
+            result.put("success", true);
+            result.put("message", "Call api doDeleteMessage successfully");
+            result.put("status", HttpStatus.OK.value());
+            result.put("data", messageId);
+            return ResponseEntity.ok(result);
+        } catch (Exception e) {
+            result.put("success", false);
+            result.put("message", "Call api doDeleteMessage failed");
             result.put("status", HttpStatus.INTERNAL_SERVER_ERROR.value());
             result.put("data", null);
             log.error("error: ", e);

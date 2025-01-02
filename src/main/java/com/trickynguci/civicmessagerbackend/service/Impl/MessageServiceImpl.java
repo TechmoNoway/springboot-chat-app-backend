@@ -33,7 +33,6 @@ public class MessageServiceImpl implements MessageService {
 
     @Override
     public List<MessageResponse> getMessagesByFriendBoxChat(int user1Id, int user2Id) {
-
         List<MessageResponse> result = messageRepository.findMessagesBetweenTwoUsers(user1Id, user2Id).stream()
                 .map(message -> MessageResponse.builder()
                         .id(message.getId())
@@ -79,6 +78,9 @@ public class MessageServiceImpl implements MessageService {
         messageRepository.save(message);
     }
 
-
+    @Override
+    public void deleteMessage(int messageId) {
+        messageRepository.deleteById(messageId);
+    }
 
 }

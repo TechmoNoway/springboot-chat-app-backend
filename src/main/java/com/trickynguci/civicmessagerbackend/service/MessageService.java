@@ -18,7 +18,5 @@ public interface MessageService {
 
     void saveMessage(MessageRequest messageRequest);
 
-
-
-
+    void deleteMessage(int messageId);
 }
