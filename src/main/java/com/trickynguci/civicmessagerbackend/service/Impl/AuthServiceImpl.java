@@ -13,7 +13,6 @@ import com.trickynguci.civicmessagerbackend.repository.TokenRepository;
 import com.trickynguci.civicmessagerbackend.repository.UserRepository;
 import com.trickynguci.civicmessagerbackend.service.AuthService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.core.Authentication;

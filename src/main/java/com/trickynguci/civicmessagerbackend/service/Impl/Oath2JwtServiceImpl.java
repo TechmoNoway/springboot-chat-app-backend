@@ -17,6 +17,7 @@ import java.util.Objects;
 public class Oath2JwtServiceImpl implements Oath2JwtService {
 
     private final JwtDecoder jwtDecoder;
+
     private final UserRepository userRepository;
 
     public String extractUsername(String token) {

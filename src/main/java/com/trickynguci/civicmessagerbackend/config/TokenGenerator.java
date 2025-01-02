@@ -3,7 +3,6 @@ package com.trickynguci.civicmessagerbackend.config;
 import com.trickynguci.civicmessagerbackend.dto.TokenDTO;
 import com.trickynguci.civicmessagerbackend.model.User;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.Authentication;
@@ -19,15 +18,12 @@ import java.time.temporal.ChronoUnit;
 @RequiredArgsConstructor
 public class TokenGenerator {
 
-    @Autowired
-    JwtEncoder accessTokenEncoder;
+    private final JwtEncoder accessTokenEncoder;
 
-    @Autowired
-    JwtDecoder accessTokenDecoder;
+    private final JwtDecoder accessTokenDecoder;
 
-    @Autowired
     @Qualifier("jwtRefreshTokenEncoder")
-    JwtEncoder refreshTokenEncoder;
+    private final JwtEncoder refreshTokenEncoder;
 
     private String createAccessToken(Authentication authentication) {
         User user = (User) authentication.getPrincipal();

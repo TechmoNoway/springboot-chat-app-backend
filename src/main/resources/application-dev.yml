@@ -5,8 +5,7 @@ REFRESH_TOKEN_PRIVATE_KEY_PATH: "access-refresh-token-keys/refresh-token-private
 REFRESH_TOKEN_PUBLIC_KEY_PATH: "access-refresh-token-keys/refresh-token-public.key"
 
 #SQL
-#SPRING_DATASOURCE_URL: "jdbc:mysql://localhost:3306/civicappdatabase?createDatabaseIfNotExist=true"
-SPRING_DATASOURCE_URL: "jdbc:mysql://localhost:3306/civicappdatabase?createDatabaseIfNotExist=true"
+SPRING_DATASOURCE_URL: "jdbc:mysql://civic-mysql:3306/civicappdatabase?createDatabaseIfNotExist=true"
 SPRING_DATASOURCE_USERNAME: "root1"
 SPRING_DATASOURCE_PASSWORD: "332003"
 SPRING_DATASOURCE_DRIVER: "com.mysql.cj.jdbc.Driver"

@@ -17,7 +17,6 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.jwt.JwtDecoder;
 import org.springframework.security.oauth2.jwt.JwtEncoder;
@@ -31,8 +30,8 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @EnableMethodSecurity
-@RequiredArgsConstructor
 @Slf4j
+@RequiredArgsConstructor
 public class SecurityConfig {
 
     private final JwtToUserConverter jwtToUserConverter;
@@ -42,7 +41,6 @@ public class SecurityConfig {
     private final PasswordEncoder passwordEncoder;
 
     private final UserDetailsManager userDetailsManager;
-
 
     private static final String[] WHITE_LIST_URL = {
             "/ws/**",
@@ -129,8 +127,5 @@ public class SecurityConfig {
         return provider;
     }
 
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+
 }
