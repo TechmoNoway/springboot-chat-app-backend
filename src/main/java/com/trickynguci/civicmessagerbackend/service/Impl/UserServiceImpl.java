@@ -1,6 +1,7 @@
 package com.trickynguci.civicmessagerbackend.service.Impl;
 
 import com.trickynguci.civicmessagerbackend.dto.UpdateUserDTO;
+import com.trickynguci.civicmessagerbackend.dto.request.ChangePasswordRequest;
 import com.trickynguci.civicmessagerbackend.dto.response.UserFriendsResponse;
 import com.trickynguci.civicmessagerbackend.dto.response.UserResponse;
 import com.trickynguci.civicmessagerbackend.model.User;
@@ -122,5 +123,10 @@ public class UserServiceImpl implements UserService {
                         .isBlocked(user.isBlocked())
                         .build())
                 .toList();
+    }
+
+    @Override
+    public void changePassword(ChangePasswordRequest changePasswordRequest) {
+
     }
 }

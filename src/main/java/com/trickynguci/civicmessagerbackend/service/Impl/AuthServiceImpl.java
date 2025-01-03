@@ -112,9 +112,8 @@ public class AuthServiceImpl implements AuthService {
 
                 Authentication registingAuthentication = UsernamePasswordAuthenticationToken.authenticated(user, user.getPassword(), Collections.emptyList());
                 TokenDTO tokenDTO = tokenGenerator.createToken(registingAuthentication);
-                saveUserToken(user, tokenDTO.getAccessToken());
 
-                Authentication loginAuthentication = daoAuthenticationProvider.authenticate(UsernamePasswordAuthenticationToken.unauthenticated(email, email));
+                Authentication loginAuthentication = daoAuthenticationProvider.authenticate(UsernamePasswordAuthenticationToken.unauthenticated(email.substring(0, index), email));
                 return tokenGenerator.createToken(loginAuthentication);
             } else {
                 Optional<User> user = userRepository.findByUsername(email);

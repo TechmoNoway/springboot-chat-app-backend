@@ -20,10 +20,6 @@ CLIENT_URL: "http://localhost:5173"
 #GOOGLE
 CLIENT_ID: "39476822030-m15g24ckmabv4h6dbfjb7ir5bu40ovgi.apps.googleusercontent.com"
 
-#VideoSDK API
-VIDEOSDK_API_KEY: "49d47493-9aad-4718-8757-ebcd1e28422a"
-VIDEOSDK_SECRET_KEY: "4c2e42c3b02038be41ac5317afac000e6341e09ef08d565bf67c1f2b9f02ffc5"
-VIDEOSDK_API_ENDPOINT: "https://api.videosdk.live/v2"
 
 
 

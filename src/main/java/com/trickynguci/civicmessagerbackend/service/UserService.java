@@ -1,6 +1,7 @@
 package com.trickynguci.civicmessagerbackend.service;
 
 import com.trickynguci.civicmessagerbackend.dto.UpdateUserDTO;
+import com.trickynguci.civicmessagerbackend.dto.request.ChangePasswordRequest;
 import com.trickynguci.civicmessagerbackend.dto.response.UserFriendsResponse;
 import com.trickynguci.civicmessagerbackend.dto.response.UserResponse;
 import com.trickynguci.civicmessagerbackend.model.User;
@@ -22,4 +23,6 @@ public interface UserService {
     List<UserFriendsResponse> getAllUserFriendsAndLatestMessage(int userId);
 
     List<UserResponse> searchUserByString(String str);
+
+    void changePassword(ChangePasswordRequest changePasswordRequest);
 }
