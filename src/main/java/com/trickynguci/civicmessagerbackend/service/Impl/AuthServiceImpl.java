@@ -97,8 +97,8 @@ public class AuthServiceImpl implements AuthService {
             String avatarUrl = googleUserInfoResponse.getPicture();
             String name = googleUserInfoResponse.getName();
 
-            if (!userRepository.existsByUsername(email)) {
-                int index = email.indexOf('@');
+            int index = email.indexOf('@');
+            if (!userRepository.existsByUsername(email.substring(0, index))) {
                 User user = User.builder()
                         .username(email.substring(0, index))
                         .password(email)
@@ -116,8 +116,8 @@ public class AuthServiceImpl implements AuthService {
                 Authentication loginAuthentication = daoAuthenticationProvider.authenticate(UsernamePasswordAuthenticationToken.unauthenticated(email.substring(0, index), email));
                 return tokenGenerator.createToken(loginAuthentication);
             } else {
-                Optional<User> user = userRepository.findByUsername(email);
-                Authentication loginAuthentication = daoAuthenticationProvider.authenticate(UsernamePasswordAuthenticationToken.unauthenticated(user.get().getUsername(), user.get().getEmail()));
+                Optional<User> user = userRepository.findByUsername(email.substring(0, index));
+                Authentication loginAuthentication = daoAuthenticationProvider.authenticate(UsernamePasswordAuthenticationToken.unauthenticated(email.substring(0, index), user.get().getEmail()));
                 return tokenGenerator.createToken(loginAuthentication);
             }
         } else {
